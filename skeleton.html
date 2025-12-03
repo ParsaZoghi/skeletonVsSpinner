@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شبیه‌ساز بارگذاری - تست مقاله</title>
+    <style>
+        /* Modernized Styles */
+        :root {
+            --primary-color: #007bff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --light-bg: #f9f9f9; /* پس‌زمینه بسیار روشن */
+            --skeleton-light: #f0f0f0; /* رنگ روشن اسکلت */
+            --skeleton-dark: #e0e0e0; /* رنگ تیره اسکلت برای افکت شیمر */
+        }
+
+        body {
+            /* اضافه کردن فونت‌های رایج‌تر فارسی */
+            font-family: 'B Nazanin', 'Tahoma', sans-serif; 
+            margin: 0;
+            padding: 40px 20px;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            /* سایه نرم و مدرن */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--skeleton-light);
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* --- کنترل‌های سوئیچینگ (Controls) --- */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .controls button {
+            padding: 12px 25px;
+            font-size: 17px;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px; /* دکمه کپسولی‌شکل */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            /* سایه دکمه */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls button:hover {
+            transform: translateY(-2px); /* افکت کمی بلند شدن */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        #btn-skeleton {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        #btn-spinner {
+            background-color: var(--warning-color);
+            color: #1a1a1a;
+        }
+
+        /* --- محتوای نهایی (News Site) --- */
+        .content {
+            padding-top: 20px;
+        }
+
+        .article {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            transition: box-shadow 0.2s;
+        }
+
+        .article h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .article:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- ۱. استایل Spinner (Modernized) --- */
+        .spinner {
+            border: 6px solid rgba(52, 152, 219, 0.2); 
+            border-top: 6px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite; /* چرخش سریعتر */
+            margin: 250px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- ۲. استایل Skeleton Screen (Modernized) --- */
+        .skeleton-container {
+            padding: 20px 0;
+            display: none;
+        }
+        
+        /* افکت شیمر برای Skeleton lines */
+        .shimmer {
+            background: linear-gradient(90deg, var(--skeleton-light) 0%, var(--skeleton-dark) 20%, var(--skeleton-light) 40%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+            border-radius: 4px;
+        }
+
+        .skeleton-line {
+            height: 15px;
+            margin-bottom: 12px;
+        }
+
+        .skeleton-title {
+            height: 25px;
+            width: 60%;
+            margin-bottom: 20px;
+        }
+
+        /* اعمال افکت شیمر */
+        .skeleton-container .skeleton-line,
+        .skeleton-container .skeleton-title {
+            background-color: transparent; 
+        }
+
+        .skeleton-article {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid var(--skeleton-light);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% 0; /* حرکت دادن گرادیان */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>وب‌سایت خبری فرضی (شبیه‌ساز تست)</h1>
+    
+    <p style="text-align: center; color: #888; font-size: 14px;">تأخیر ثابت <span style="font-weight: bold; color: #555;">۲.۷۵ ثانیه</span></p>
+
+    <div class="controls">
+        <button id="btn-skeleton" onclick="loadContent('skeleton')">بارگذاری با Skeleton Screen</button>
+        <button id="btn-spinner" onclick="loadContent('spinner')">بارگذاری با Spinner</button>
+    </div>
+
+    <div id="loader-spinner" class="spinner"></div>
+
+    <div id="loader-skeleton" class="skeleton-container">
+        <div class="skeleton-article">
+            <div class="skeleton-line skeleton-title shimmer"></div>
+            <div class="skeleton-line shimmer" style="width: 90%;"></div>
+            <div class="skeleton-line shimmer" style="width: 85%;"></div>
+        </div>
+        <div class="skeleton-article">
+            <div class="skeleton-line skeleton-title shimmer"></div>
+            <div class="skeleton-line shimmer" style="width: 95%;"></div>
+            <div class="skeleton-line shimmer" style="width: 80%;"></div>
+        </div>
+        <div class="skeleton-article">
+            <div class="skeleton-line skeleton-title shimmer"></div>
+            <div class="skeleton-line shimmer" style="width: 80%;"></div>
+            <div class="skeleton-line shimmer" style="width: 90%;"></div>
+        </div>
+    </div>
+
+    <div id="main-content" class="content" style="display: none;">
+        <div class="article">
+            <h2>مقاله‌ی شماره ۱: نتایج انتخابات اخیر</h2>
+            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می‌باشد.</p>
+        </div>
+        <div class="article">
+            <h2>مقاله‌ی شماره ۲: راهنمای طراحی UX پیشرفته</h2>
+            <p>کتاب‌های زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می‌طلبد تا با نرم‌افزارها شناخت بیشتری را برای طراحان رایانه ای علی‌الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کند.</p>
+        </div>
+        <div class="article">
+            <h2>مقاله‌ی شماره ۳: اثرات هوش مصنوعی بر اقتصاد</h2>
+            <p>در این صورت می‌توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود باشد.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const DELAY_MS = 2750; // ۲.۷۵ ثانیه (2750 میلی‌ثانیه) بر اساس مقاله
+    const contentDiv = document.getElementById('main-content');
+    const spinnerDiv = document.getElementById('loader-spinner');
+    const skeletonDiv = document.getElementById('loader-skeleton');
+
+    // تابع اصلی برای شروع بارگذاری
+    function loadContent(mode) {
+        // ۱. همه چیز را پاک و مخفی کن
+        contentDiv.style.display = 'none';
+        spinnerDiv.style.display = 'none';
+        skeletonDiv.style.display = 'none';
+
+        // ۲. حالت بارگذاری مورد نظر را نمایش بده
+        if (mode === 'spinner') {
+            spinnerDiv.style.display = 'block';
+        } else if (mode === 'skeleton') {
+            skeletonDiv.style.display = 'block';
+        }
+
+        // ۳. تأخیر ۲.۷۵ ثانیه‌ای را اجرا کن
+        setTimeout(() => {
+            // ۴. محتوای بارگذاری شده را نمایش بده و بازخوردها را مخفی کن
+            spinnerDiv.style.display = 'none';
+            skeletonDiv.style.display = 'none';
+            contentDiv.style.display = 'block';
+        }, DELAY_MS);
+    }
+
+    // به صورت پیش‌فرض محتوا را با Skeleton Screen بارگذاری کن
+    document.addEventListener('DOMContentLoaded', () => {
+        loadContent('skeleton');
+    });
+</script>
+
+</body>
+</html>
