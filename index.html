@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شبیه‌ساز بارگذاری - تست مقاله</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <style>
         /* Modernized Styles */
         :root {
@@ -13,11 +14,12 @@
             --light-bg: #f9f9f9; /* پس‌زمینه بسیار روشن */
             --skeleton-light: #f0f0f0; /* رنگ روشن اسکلت */
             --skeleton-dark: #e0e0e0; /* رنگ تیره اسکلت برای افکت شیمر */
+            --font-vazir: Vazirmatn, 'Tahoma', sans-serif;
         }
 
         body {
             /* اضافه کردن فونت‌های رایج‌تر فارسی */
-            font-family: 'B Nazanin', 'Tahoma', sans-serif; 
+            font-family: var(--font-vazir); 
             margin: 0;
             padding: 40px 20px;
             background-color: var(--light-bg);
@@ -57,6 +59,7 @@
             cursor: pointer;
             border: none;
             border-radius: 30px; /* دکمه کپسولی‌شکل */
+            font-family: var(--font-vazir);
             font-weight: 600;
             transition: all 0.3s ease;
             /* سایه دکمه */
@@ -137,7 +140,7 @@
         }
 
         .skeleton-title {
-            height: 25px;
+            height: 38px;
             width: 60%;
             margin-bottom: 20px;
         }
@@ -250,3 +253,4 @@
 </body>
 
 </html>
+
